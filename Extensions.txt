@@ -1,0 +1,44 @@
+Jason Sze and Ya Xin Huang
+
+Extensions:
+Added a mute button such that if the player wishes, the player can mute the sounds that occur when the ball hits the paddle or bricks.
+	- We used an image of a speaker symbol found online called Volume up interface symbol free icon.
+		This image was created by Dave Gandy and made public under the Creative Commons BY 3.0 license.
+		Link: http://www.flaticon.com/free-icon/volume-up-interface-symbol_25695
+	- We took the image and inverted the colors such that it would look white on a black background, and also made a second image 
+	which does not contain the 3 curved lines signaling that the sound is on (we made the volumeoff symbol)
+	- Whenever the mouse clicks directly onto the GImage that is this mute button, the GImage switches to its counterpart (either volumeon or volumenull)
+	- When the click occurs, it also triggers the _sound attribute in breakout to negate itself (either True or False) and this determines whether or not 
+	sounds will play.
+	- This was implemented with the sound method in breakout.
+
+Added a sound whenever the ball hits either the paddle or a brick.
+	- We used the stock sounds but included an extra sound Subsynth-modfilter
+		This sound was released into public domain by its author Wji at the English Wikipedia project 
+		under the Creative Commons Attribution-Share Alike 3.0 Unported license.
+		Link: http://commons.wikimedia.org/wiki/File:Subsynth-modfilter.ogg
+	- We implemented sounds to play whenever the ball hits the paddle or brick by running the 
+	play sound method whenever a collision occurs and if the game is unmuted.
+
+Added "better player controls" whereas depending on where the ball hits the paddle, the bounce of the ball differs.
+	- We implemented it such that if the ball is coming from the left and hits the left 1/3 of the paddle, 
+	the ball would bounce back to the left, and if the ball is coming from the right and hits the right 1/3
+	of the paddle, the ball would bounce back to the right. If the ball hits the middle 1/3 of the paddle, it 
+	will just continue its x-direction and bounce up. 
+	- This was implemented with the hitPaddle method in gameplay.
+
+Added a countdown timer during the 3 seconds during countdown
+	- This timer counts down in seconds starting from '3' the to '2' then to '1'.
+	- The GLabel text will change numbers every 60 screen updates until it reaches 60 screen updates after '1', 
+	where it will disappear and the game will start.
+	- This was implemented in the countdown method in breakout.
+
+Added a score keeper which increases by one whenever a brick is hit.
+	- The score will be accumulate as long as the player still has lives remaining, but will reset upon starting a new game.
+	- This makes use of the updateScore method in gameplay where it increments _points by one for every brick broken.
+	- updateScore also updates self._score, a GLabel, to show the new _points value.
+
+Added a way such that when you reach STATE_COMPLETE, you can click to start a new game.
+	- At both the "Game Over" and "Congratulations" STATE_COMPLETE screens, you can click the screen and it will start a new game.
+	- This was implemented by checking for a click while the _state is STATE_COMPLETE, and if a click occurs, will bring you to 
+	the STATE_INACTIVE screen, ready for you to start a new game.
